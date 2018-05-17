@@ -56,3 +56,12 @@ Examples of length distance pairs (two integers seperated by a comma, no spaces)
 
 ## End Of Data
 This is simply just the string of EOF.<br>
+
+# A Companion Tool
+Mark Adler, co-auther of zlib, has a useful tool called infgen https://github.com/madler/infgen/blob/master/infgen.c
+compiling this is as simple as: gcc infgen.c -o infgen<br><br>
+
+I prefer to feed the tool either the base64 representation or ascii hex representation of the compressed data:<br>
+echo "MzQCQQA=" | base64 -d | ./infgenx -r<br>
+echo "3334024100" | xxd -r -p | ./infgenx -r<br><br>
+This tool will dump the tokens; literals and length distance pairs (displayed as something like 'match 4 2')
