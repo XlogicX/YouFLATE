@@ -58,6 +58,9 @@ Examples of length distance pairs (two integers seperated by a comma, no spaces)
 ## End Of Data
 This is simply just the string of EOF.<br>
 
+## Session Example:<br>
+![alt tag](https://github.com/XlogicX/YouFLATE/blob/master/youflatesession.png?raw=true)
+
 # A Companion Tool
 Mark Adler, co-auther of zlib, has a useful tool called infgen https://github.com/madler/infgen/blob/master/infgen.c. 
 Compiling this is as simple as: gcc infgen.c -o infgen<br><br>
