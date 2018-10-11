@@ -18,6 +18,8 @@ my $input = 0;
 
 my ($deflated,$inflator,$buf);
 
+my $deflate_data;
+
 while () {
 	system('clear');	#system('cls') on windows
 	#Display the current tokens
@@ -134,8 +136,17 @@ foreach my $token (@readable_tokens) {
 	}		
 }
 #Display current HEX data and Base64 representation
+
+if ($hex_bytes !~ /00$/) {
+	$hex_bytes .= "00";
+	$deflate_data .= pack("C*", map {$_ ? hex($_) :()} "00000000");	
+	$base64_data = encode_base64($deflate_data);
+}
 print "\nFinal ASCIIHex Data: $hex_bytes\n";
 print "Final Base64: $base64_data\n";
+
+
+	
 
 # Show what uncompressed string should look like
 $deflated = decode_base64($base64_data);
@@ -198,7 +209,7 @@ sub process_data {
 
 	#print hex form of bytes
 	$hex_bytes = '';		#init hex bytes
-	my $deflate_data;
+	$deflate_data = '';
 	foreach my $byte (@reversed_bytes){
 		$byte = sprintf('%.2X', oct("0b$byte"));
 		$hex_bytes .= "$byte";
